@@ -15,7 +15,6 @@ theme:
     - navigation.instant       # Fast SPA-like page loads
     - navigation.tracking      # Highlights right TOC as you scroll
     - navigation.top           # "Back to top" button
-    - navigation.expand
     - navigation.footer
     - search.highlight
     - search.suggest
