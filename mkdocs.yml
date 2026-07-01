@@ -20,7 +20,6 @@ theme:
     - search.suggest
     - content.code.copy        # Adds a click-to-copy button to code blocks
     - content.code.annotate    # Allows code annotations
-    - toc.integrate            # Integrates TOC into the left sidebar
     - toc.follow
 
   palette:
