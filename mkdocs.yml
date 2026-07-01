@@ -1,36 +1,50 @@
 site_name: Python Handbook for Spring Boot Developers
+site_url: https://your-internal-link.accenture.com
 site_description: Learn Python, FastAPI, Pydantic, LangGraph and LangFuse
-site_author: Your Name
 
 theme:
   name: material
-  palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+  
+  # Logo placement configuration
+  logo: assets/accenture-logo-white.svg
+  favicon: assets/favicon.ico
+  
   features:
-    - navigation.tabs
-    - navigation.sections
+    - navigation.tabs          # Keeps your top tab layout
+    - navigation.tabs.sticky   # Pins tabs to top on scroll
+    - navigation.instant       # Fast SPA-like page loads
+    - navigation.tracking      # Highlights right TOC as you scroll
+    - navigation.top           # "Back to top" button
     - navigation.expand
-    - navigation.top
     - navigation.footer
     - search.highlight
     - search.suggest
-    - content.code.copy
+    - content.code.copy        # Adds a click-to-copy button to code blocks
+    - content.code.annotate    # Allows code annotations
     - toc.follow
+
+  palette:
+    # Palette toggle for Light Mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black          # Sleek dark header accentuates the logo
+      accent: deep purple     # Accenture purple for links/buttons
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Typography tuning
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md
@@ -43,18 +57,22 @@ nav:
   - LangFuse: chapter-5/index.md
   - EduTrack Project: chapter-6/index.md
 
-
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed
+  - tables
+  - toc:
+      permalink: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight:
-      use_pygments: true
-  - pymdownx.details
-  - pymdownx.tabbed
-  - tables
-  - toc:
-      permalink: true
