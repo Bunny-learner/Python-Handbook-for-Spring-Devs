@@ -1,0 +1,1889 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn Python, FastAPI, Pydantic, LangGraph and LangFuse">
+      
+      
+      
+        <link rel="canonical" href="https://your-internal-link.accenture.com/chapter-6/">
+      
+      
+        <link rel="prev" href="../chapter-5/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>EduTrack Project - Python Handbook for Spring Boot Developers</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-6-edutrack-project" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Handbook for Spring Boot Developers" class="md-header__button md-logo" aria-label="Python Handbook for Spring Boot Developers" data-md-component="logo">
+      
+  <img src="../assets/Accenture-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Handbook for Spring Boot Developers
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EduTrack Project
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-0/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    
+  
+  Python Basics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-1/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+    
+  
+  Core Python
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-2/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69zm-5.15-2.55 6.28-3.63-.58-1.01-6.28 3.63z"/></svg>
+    
+  
+  Pydantic
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-3/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+    
+  
+  FastAPI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-4/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+    
+  
+  LangGraph
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../chapter-5/" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16 11.78 4.24-7.33 1.73 1-5.23 9.05-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
+    
+  
+  LangFuse
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+    
+  
+  EduTrack Project
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Handbook for Spring Boot Developers" class="md-nav__button md-logo" aria-label="Python Handbook for Spring Boot Developers" data-md-component="logo">
+      
+  <img src="../assets/Accenture-logo.png" alt="logo">
+
+    </a>
+    Python Handbook for Spring Boot Developers
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-0/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-1/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-2/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69zm-5.15-2.55 6.28-3.63-.58-1.01-6.28 3.63z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-3/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-4/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-5/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16 11.78 4.24-7.33 1.73 1-5.23 9.05-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LangFuse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    EduTrack Project
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    EduTrack Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-project-structure-edutrack-school-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Project Structure — EduTrack School System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Project Structure — EduTrack School System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-of-4-pydantic-define-validate-all-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 of 4 · Pydantic — Define &amp; Validate All Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1 of 4 · Pydantic — Define &amp; Validate All Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#studentcreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentCreate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studentupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentUpdate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studentresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-of-4-fastapi-expose-the-rest-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 of 4 · FastAPI — Expose the REST Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 of 4 · FastAPI — Expose the REST Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update &amp; Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-of-4-langgraph-ai-enrollment-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 of 4 · LangGraph — AI Enrollment Assistant
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3 of 4 · LangGraph — AI Enrollment Assistant">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-of-4-langfuse-observe-every-operation-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 of 4 · LangFuse — Observe Every Operation End-to-End
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 of 4 · LangFuse — Observe Every Operation End-to-End">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tracing-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracing &amp; Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-putting-it-all-together-end-to-end-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Putting It All Together — End-to-End Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-final-annotation-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Final Annotation Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sqlalchemy-vs-hibernate-the-critical-missing-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SQLAlchemy vs Hibernate: The Critical Missing Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. SQLAlchemy vs Hibernate: The Critical Missing Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-migrations-alembic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Migrations (Alembic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sync-vs-async-event-loop-mismatch-performance-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Sync vs Async Event Loop Mismatch (Performance Bug!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-boundaries-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transaction Boundaries (@Transactional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-project-structure-edutrack-school-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Project Structure — EduTrack School System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Project Structure — EduTrack School System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-of-4-pydantic-define-validate-all-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 of 4 · Pydantic — Define &amp; Validate All Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1 of 4 · Pydantic — Define &amp; Validate All Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#studentcreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentCreate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studentupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentUpdate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studentresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StudentResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-of-4-fastapi-expose-the-rest-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 of 4 · FastAPI — Expose the REST Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 of 4 · FastAPI — Expose the REST Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update &amp; Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-of-4-langgraph-ai-enrollment-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 of 4 · LangGraph — AI Enrollment Assistant
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3 of 4 · LangGraph — AI Enrollment Assistant">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-of-4-langfuse-observe-every-operation-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 of 4 · LangFuse — Observe Every Operation End-to-End
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 of 4 · LangFuse — Observe Every Operation End-to-End">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tracing-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracing &amp; Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-putting-it-all-together-end-to-end-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Putting It All Together — End-to-End Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-final-annotation-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Final Annotation Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sqlalchemy-vs-hibernate-the-critical-missing-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SQLAlchemy vs Hibernate: The Critical Missing Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. SQLAlchemy vs Hibernate: The Critical Missing Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-migrations-alembic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Migrations (Alembic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sync-vs-async-event-loop-mismatch-performance-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Sync vs Async Event Loop Mismatch (Performance Bug!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-boundaries-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transaction Boundaries (@Transactional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-6-edutrack-project"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg></span> Chapter 6: EduTrack Project<a class="headerlink" href="#chapter-6-edutrack-project" title="Permanent link">&para;</a></h1>
+<p><em>The EduTrack Capstone.</em>
+Tie it all together by building a complete, production-ready Student Management AI application.
+<strong>Estimated Reading Time:</strong> 45 min</p>
+<hr />
+<blockquote>
+<p><strong>🏫 The Story: EduTrack — A School Management System</strong></p>
+<p>We are building EduTrack — a backend system for a school that manages Students, Courses, and Enrollments. Every section of this chapter tells the next part of the same story, using the same data, the same IDs, the same names.
+The four technologies work together like this:
+Pydantic — validates all data going in and out (the gatekeeper)
+FastAPI — exposes the REST endpoints teachers &amp; admins call
+LangGraph — powers an AI assistant that handles enrollment queries via natural language
+LangFuse — observes every operation: API call, AI decision, DB write — fully traceable</p>
+</blockquote>
+<p><strong>Pydantic — Validates data → FastAPI — Exposes REST API → LangGraph — AI orchestration → LangFuse — Observability</strong></p>
+<h2 id="1-project-structure-edutrack-school-system">1. Project Structure — EduTrack School System<a class="headerlink" href="#1-project-structure-edutrack-school-system" title="Permanent link">&para;</a></h2>
+<p>EduTrack manages three resources: Students, Courses, and Enrollments. Each resource has its own file per layer. The folder structure below is the same whether you're using Spring Boot or FastAPI — only the filenames and annotations differ.</p>
+<details class="abstract">
+<summary>Folder Structure Comparison</summary>
+<table>
+<thead>
+<tr>
+<th>FastAPI File</th>
+<th>Spring Boot Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>models/student.py</code>  (SQLAlchemy ORM)</td>
+<td><code>Student.java</code>  (@Entity)</td>
+</tr>
+<tr>
+<td><code>schemas/student_schema.py</code>  (Pydantic)</td>
+<td><code>StudentDTO.java</code></td>
+</tr>
+<tr>
+<td><code>services/student_service.py</code></td>
+<td><code>StudentService.java</code>  (@Service)</td>
+</tr>
+<tr>
+<td><code>routes/students.py</code></td>
+<td><code>StudentController.java</code>  (@RestController)</td>
+</tr>
+<tr>
+<td><code>agent/enrollment_agent.py</code></td>
+<td>(LangGraph AI agent — no Spring equivalent)</td>
+</tr>
+<tr>
+<td><code>main.py</code></td>
+<td><code>Application.java</code>  (@SpringBootApplication)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr />
+<h3 id="step-1-of-4-pydantic-define-validate-all-data">Step 1 of 4 · Pydantic — Define &amp; Validate All Data<a class="headerlink" href="#step-1-of-4-pydantic-define-validate-all-data" title="Permanent link">&para;</a></h3>
+<p>Before writing a single route or database query, we define all our data shapes with Pydantic. These models are the single source of truth.</p>
+<div class="admonition note">
+<p class="admonition-title">The Gatekeeper</p>
+<p>Every field in these models is used consistently across all four technologies. The same <code>StudentCreate</code> model that validates the HTTP POST body is also what the LangGraph agent outputs.</p>
+</div>
+<h4 id="studentcreate">StudentCreate<a class="headerlink" href="#studentcreate" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Represents the request body for creating a new student. Validates email formats and grade constraints.</p>
+<p><strong>Used In</strong>
+- FastAPI <code>POST /students</code>
+- LangGraph <code>enroll_node</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">email</span><span class="p">:</span> <span class="n">EmailStr</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">roll_number</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^STU-\d</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">grade</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="studentupdate">StudentUpdate<a class="headerlink" href="#studentupdate" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Represents a partial edit (PATCH). All fields are optional.</p>
+<p><strong>Used In</strong>
+- FastAPI <code>PATCH /students/{id}</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentUpdate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">grade</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="studentresponse">StudentResponse<a class="headerlink" href="#studentresponse" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+The final output sent back to the client. Safely strips internal data.</p>
+<p><strong>Used In</strong>
+- All FastAPI <code>GET</code> endpoints
+- LangGraph agent final output</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">roll_number</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">grade</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">enrolled_at</span><span class="p">:</span> <span class="n">datetime</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">model_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;from_attributes&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Key Takeaways</p>
+<ul>
+<li><strong>Pydantic replaces DTOs + Bean Validation</strong> in a single class.</li>
+<li><strong>Separate your Request and Response models</strong> to avoid accidentally exposing sensitive data.</li>
+<li><strong>Use <code>from_attributes = True</code></strong> so Pydantic can read directly from SQLAlchemy ORM objects.</li>
+</ul>
+</div>
+<details class="example">
+<summary>Complete schemas/student_schema.py</summary>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">EmailStr</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">email</span><span class="p">:</span> <span class="n">EmailStr</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">roll_number</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^STU-\d</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">grade</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentUpdate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">grade</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="n">roll_number</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="n">grade</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="n">enrolled_at</span><span class="p">:</span> <span class="n">datetime</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="n">model_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;from_attributes&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</span></code></pre></div>
+</details>
+<hr />
+<h3 id="step-2-of-4-fastapi-expose-the-rest-endpoints">Step 2 of 4 · FastAPI — Expose the REST Endpoints<a class="headerlink" href="#step-2-of-4-fastapi-expose-the-rest-endpoints" title="Permanent link">&para;</a></h3>
+<p>Now that our data shapes are locked down, we wire them into FastAPI routes. FastAPI reads the schema, validates input, and serializes output automatically.</p>
+<h4 id="create">Create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Registers a new student into the database.</p>
+<p><strong>Used In</strong>
+- Admin Dashboard</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">StudentResponse</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_student</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">StudentCreate</span><span class="p">,</span> <span class="n">svc</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="read">Read<a class="headerlink" href="#read" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Fetches paginated students or a specific student by ID.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">StudentResponse</span><span class="p">])</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_students</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">svc</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="update-delete">Update &amp; Delete<a class="headerlink" href="#update-delete" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Modifies existing records or drops them (cascading to enrollments).</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@router</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{student_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">StudentResponse</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_student</span><span class="p">(</span><span class="n">student_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">StudentUpdate</span><span class="p">,</span> <span class="n">svc</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{student_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">204</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_student</span><span class="p">(</span><span class="n">student_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">svc</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">svc</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">student_id</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Key Takeaways</p>
+<ul>
+<li><strong>FastAPI replaces <code>@RestController</code></strong>.</li>
+<li><strong><code>response_model</code> handles serialization automatically</strong> (no <code>ObjectMapper</code> needed).</li>
+<li><strong><code>Depends()</code> replaces <code>@Autowired</code></strong> for injecting the Service layer.</li>
+</ul>
+</div>
+<details class="example">
+<summary>Complete routes/students.py</summary>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">status</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.orm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">database</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_db</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">schemas.student_schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">StudentCreate</span><span class="p">,</span> <span class="n">StudentUpdate</span><span class="p">,</span> <span class="n">StudentResponse</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">services.student_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">StudentService</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/students&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Students&quot;</span><span class="p">])</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_svc</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)):</span> <span class="k">return</span> <span class="n">StudentService</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">StudentResponse</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_student</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">StudentCreate</span><span class="p">,</span> <span class="n">svc</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">StudentResponse</span><span class="p">])</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_students</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">svc</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{student_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">StudentResponse</span><span class="p">)</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_student</span><span class="p">(</span><span class="n">student_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">svc</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="n">student_id</span><span class="p">)</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="nd">@router</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{student_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">StudentResponse</span><span class="p">)</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_student</span><span class="p">(</span><span class="n">student_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="n">StudentUpdate</span><span class="p">,</span> <span class="n">svc</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    <span class="k">return</span> <span class="n">svc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{student_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">204</span><span class="p">)</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_student</span><span class="p">(</span><span class="n">student_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">svc</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_svc</span><span class="p">)):</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>    <span class="n">svc</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">student_id</span><span class="p">)</span>
+</span></code></pre></div>
+</details>
+<hr />
+<h3 id="step-3-of-4-langgraph-ai-enrollment-assistant">Step 3 of 4 · LangGraph — AI Enrollment Assistant<a class="headerlink" href="#step-3-of-4-langgraph-ai-enrollment-assistant" title="Permanent link">&para;</a></h3>
+<p>The school principal wants a natural-language assistant: <em>"Enroll Arjun in CS-101"</em>. Instead of making the admin click buttons, LangGraph orchestrates the AI to hit the exact same FastAPI services we built in Step 2.</p>
+<h4 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+The <code>TypedDict</code> that carries data between graph nodes. Think of it as the shared memory for one specific execution of the agent.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SchoolAgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span>          <span class="c1"># &quot;Enroll Arjun in CS-101&quot;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">intent</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># &quot;enroll&quot; | &quot;list_students&quot; | &quot;drop&quot;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">student_name</span><span class="p">:</span> <span class="nb">str</span>        
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">course_code</span><span class="p">:</span> <span class="nb">str</span>         
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">result</span><span class="p">:</span> <span class="nb">dict</span>             
+</span></code></pre></div>
+<h4 id="nodes">Nodes<a class="headerlink" href="#nodes" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Python functions that update the <code>State</code>. This specific node uses the LLM to extract the user's intent.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse_intent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SchoolAgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Parse the admin query: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;user_query&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> into JSON.&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">prompt</span><span class="p">)])</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">parsed</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;intent&quot;</span><span class="p">:</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;intent&quot;</span><span class="p">],</span> <span class="s2">&quot;student_name&quot;</span><span class="p">:</span> <span class="n">parsed</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;student_name&quot;</span><span class="p">)}</span>
+</span></code></pre></div>
+<h4 id="router">Router<a class="headerlink" href="#router" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+A simple function that looks at the current <code>State</code> and decides which Node executes next.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">route_intent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SchoolAgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="n">intent_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;enroll&quot;</span><span class="p">:</span> <span class="s2">&quot;enroll&quot;</span><span class="p">,</span> <span class="s2">&quot;drop&quot;</span><span class="p">:</span> <span class="s2">&quot;drop&quot;</span><span class="p">}</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">return</span> <span class="n">intent_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;intent&quot;</span><span class="p">],</span> <span class="n">END</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="graph-construction">Graph Construction<a class="headerlink" href="#graph-construction" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Wiring the Nodes and Routers together into a compiled StateMachine.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">g</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SchoolAgentState</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">g</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">,</span> <span class="n">parse_intent</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">g</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;enroll&quot;</span><span class="p">,</span> <span class="n">enroll_node</span><span class="p">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">g</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_node</span><span class="p">)</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">g</span><span class="o">.</span><span class="n">set_entry_point</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">g</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">,</span> <span class="n">route_intent</span><span class="p">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">school_agent</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Key Takeaways</p>
+<ul>
+<li><strong>LangGraph separates AI logic from Business Logic</strong>. The AI just extracts parameters; it calls the existing <code>StudentService</code> to do the actual database writes.</li>
+<li><strong>State is immutable</strong>. Each node returns a partial dictionary that merges into the global state.</li>
+</ul>
+</div>
+<details class="example">
+<summary>Complete agent/enrollment_agent.py</summary>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Literal</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">END</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">schemas.enrollment_schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnrollmentCreate</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">services.enrollment_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnrollmentService</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">SchoolAgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="n">intent</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="n">student_name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="n">course_code</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span class="n">student</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="n">result</span><span class="p">:</span> <span class="nb">dict</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse_intent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SchoolAgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;Parse query: &quot;</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_query&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot; into JSON </span><span class="si">{</span><span class="s2">&quot;intent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;student_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;course_code&quot;</span><span class="si">}</span><span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">prompt</span><span class="p">)])</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    <span class="n">parsed</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;intent&quot;</span><span class="p">:</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;intent&quot;</span><span class="p">],</span> <span class="s2">&quot;student_name&quot;</span><span class="p">:</span> <span class="n">parsed</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;student_name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;course_code&quot;</span><span class="p">:</span> <span class="n">parsed</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;course_code&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)}</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="k">def</span><span class="w"> </span><span class="nf">enroll_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SchoolAgentState</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>    <span class="c1"># Calls the FastAPI Service layer</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">EnrollmentService</span><span class="p">(</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">enroll</span><span class="p">(</span><span class="n">EnrollmentCreate</span><span class="p">(</span><span class="n">student_id</span><span class="o">=</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">course_id</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()}</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="k">def</span><span class="w"> </span><span class="nf">route_intent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SchoolAgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>    <span class="n">intent_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;enroll&quot;</span><span class="p">:</span> <span class="s2">&quot;enroll&quot;</span><span class="p">,</span> <span class="s2">&quot;drop&quot;</span><span class="p">:</span> <span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="s2">&quot;list_students&quot;</span><span class="p">:</span> <span class="s2">&quot;list_students&quot;</span><span class="p">}</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    <span class="k">return</span> <span class="n">intent_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;intent&quot;</span><span class="p">],</span> <span class="n">END</span><span class="p">)</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="n">g</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SchoolAgentState</span><span class="p">)</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="n">g</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">,</span> <span class="n">parse_intent</span><span class="p">)</span>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="n">g</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;enroll&quot;</span><span class="p">,</span> <span class="n">enroll_node</span><span class="p">)</span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="n">g</span><span class="o">.</span><span class="n">set_entry_point</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">)</span>
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span class="n">g</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;parse_intent&quot;</span><span class="p">,</span> <span class="n">route_intent</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;enroll&quot;</span><span class="p">:</span> <span class="s2">&quot;enroll&quot;</span><span class="p">})</span>
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a><span class="n">school_agent</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</span></code></pre></div>
+</details>
+<hr />
+<h3 id="step-4-of-4-langfuse-observe-every-operation-end-to-end">Step 4 of 4 · LangFuse — Observe Every Operation End-to-End<a class="headerlink" href="#step-4-of-4-langfuse-observe-every-operation-end-to-end" title="Permanent link">&para;</a></h3>
+<p>We add full observability. LangFuse traces the complete lifecycle: the FastAPI request, the LangGraph agent's decisions, the LLM call, and the DB write — all visible in one trace tree.</p>
+<h4 id="tracing-metadata">Tracing &amp; Metadata<a class="headerlink" href="#tracing-metadata" title="Permanent link">&para;</a></h4>
+<p><strong>Purpose</strong>
+Use the <code>@observe</code> decorator to automatically capture inputs, outputs, and execution time. We inject business metadata (like <code>student_id</code>) so we can easily search for it later in the dashboard.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langfuse.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">observe</span><span class="p">,</span> <span class="n">langfuse_context</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nd">@observe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fastapi.enroll_student&quot;</span><span class="p">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">traced_enroll</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">EnrollmentCreate</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">langfuse_context</span><span class="o">.</span><span class="n">update_current_trace</span><span class="p">(</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;crud&quot;</span><span class="p">,</span> <span class="s2">&quot;enrollment&quot;</span><span class="p">],</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">student_id</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">course_id</span><span class="p">}</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="p">)</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">EnrollmentService</span><span class="p">(</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">enroll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="n">langfuse_context</span><span class="o">.</span><span class="n">score_current_observation</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Key Takeaways</p>
+<ul>
+<li><strong><code>@observe</code> replaces manual logging or MDC contexts</strong>.</li>
+<li><strong>Attach business IDs as metadata</strong> so you can track a single user across both REST endpoints and AI Agent invocations.</li>
+</ul>
+</div>
+<details class="example">
+<summary>Complete agent/observed_agent.py</summary>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langfuse.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">observe</span><span class="p">,</span> <span class="n">langfuse_context</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langfuse.callback</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallbackHandler</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">schemas.enrollment_schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnrollmentCreate</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nd">@observe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fastapi.enroll_student&quot;</span><span class="p">)</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">traced_enroll</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">EnrollmentCreate</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">langfuse_context</span><span class="o">.</span><span class="n">update_current_trace</span><span class="p">(</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;crud&quot;</span><span class="p">,</span> <span class="s2">&quot;enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">],</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>            <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">student_id</span><span class="p">,</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>            <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>            <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;enrollment&quot;</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="p">}</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="p">)</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">EnrollmentService</span><span class="p">(</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">enroll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    <span class="n">langfuse_context</span><span class="o">.</span><span class="n">score_current_observation</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="nd">@observe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;agent.enrollment_query&quot;</span><span class="p">)</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_school_agent</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>    <span class="n">langfuse_context</span><span class="o">.</span><span class="n">update_current_trace</span><span class="p">(</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ai&quot;</span><span class="p">,</span> <span class="s2">&quot;langgraph&quot;</span><span class="p">],</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">}</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>    <span class="p">)</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>    <span class="n">langfuse_handler</span> <span class="o">=</span> <span class="n">CallbackHandler</span><span class="p">(</span><span class="n">session_id</span><span class="o">=</span><span class="s2">&quot;admin-session-001&quot;</span><span class="p">)</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;callbacks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">langfuse_handler</span><span class="p">]}</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">school_agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;user_query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="k">return</span> <span class="n">result</span>
+</span></code></pre></div>
+</details>
+<hr />
+<h2 id="2-putting-it-all-together-end-to-end-flow">2. Putting It All Together — End-to-End Flow<a class="headerlink" href="#2-putting-it-all-together-end-to-end-flow" title="Permanent link">&para;</a></h2>
+<p>Here is the complete journey of a single natural-language enrollment request — <em>"Enroll Arjun in CS-101"</em> — flowing through all four technologies simultaneously:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Admin
+    participant FastAPI
+    participant LangGraph
+    participant Pydantic
+    participant LangFuse
+
+    Admin-&gt;&gt;FastAPI: POST /api/agent/query "Enroll Arjun in CS-101"
+    FastAPI-&gt;&gt;LangFuse: Opens trace: agent.enrollment_query
+    FastAPI-&gt;&gt;LangGraph: invoke()
+
+    LangGraph-&gt;&gt;LangGraph: parse_intent node (LLM)
+    LangGraph--&gt;&gt;LangFuse: Logs LLM tokens &amp; latency
+
+    LangGraph-&gt;&gt;LangGraph: route_intent -&gt; "enroll"
+    LangGraph-&gt;&gt;FastAPI: calls EnrollmentService.enroll()
+    FastAPI-&gt;&gt;Pydantic: Validates EnrollmentCreate
+    FastAPI--&gt;&gt;LangGraph: returns EnrollmentResponse
+
+    LangGraph--&gt;&gt;FastAPI: returns final AI message
+    FastAPI-&gt;&gt;LangFuse: score_current_observation(success=1.0)
+    LangFuse--&gt;&gt;LangFuse: Trace closed
+    FastAPI--&gt;&gt;Admin: 200 OK (Response JSON)</code></pre>
+<div class="admonition note">
+<p class="admonition-title">The Big Picture</p>
+<p>The same <code>student_id=42</code> and <code>course_id=7</code> appear in every step. LangFuse, LangGraph, FastAPI, and Pydantic are all working on the same piece of data — just handling different concerns: AI reasoning, HTTP transport, business validation, and observability.</p>
+</div>
+<hr />
+<h2 id="3-final-annotation-mapping">3. Final Annotation Mapping<a class="headerlink" href="#3-final-annotation-mapping" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Spring Boot</th>
+<th>FastAPI / Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@SpringBootApplication</code></td>
+<td><code>FastAPI()</code> + <code>uvicorn main:app --reload</code></td>
+</tr>
+<tr>
+<td><code>@RestController</code> + <code>@RequestMapping</code></td>
+<td><code>APIRouter(prefix=...)</code> + <code>@router.get/post...</code></td>
+</tr>
+<tr>
+<td><code>@RequestBody @Valid DTO</code></td>
+<td>Pydantic model as fn param (auto-validated)</td>
+</tr>
+<tr>
+<td><code>@Service</code></td>
+<td>Service class injected via <code>Depends()</code></td>
+</tr>
+<tr>
+<td><code>@Repository</code> / <code>JpaRepository</code></td>
+<td>SQLAlchemy ORM + Repository class</td>
+</tr>
+<tr>
+<td><code>@Entity</code> + <code>@Column</code></td>
+<td>SQLAlchemy Column definitions</td>
+</tr>
+<tr>
+<td><code>@Valid</code> + Bean Validation</td>
+<td>Pydantic Field validators</td>
+</tr>
+<tr>
+<td>Micrometer + Actuator</td>
+<td>LangFuse traces + <code>@observe</code> decorator</td>
+</tr>
+<tr>
+<td>Spring State Machine</td>
+<td>LangGraph StateGraph + nodes + edges</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-sqlalchemy-vs-hibernate-the-critical-missing-links">4. SQLAlchemy vs Hibernate: The Critical Missing Links<a class="headerlink" href="#4-sqlalchemy-vs-hibernate-the-critical-missing-links" title="Permanent link">&para;</a></h2>
+<p>If you look closely at the database code above, it works perfectly, but there are a few massive "Java-to-Python" pitfalls hidden in the implementation.</p>
+<h3 id="database-migrations-alembic">Database Migrations (Alembic)<a class="headerlink" href="#database-migrations-alembic" title="Permanent link">&para;</a></h3>
+<p>In Spring Boot, you add <code>spring.jpa.hibernate.ddl-auto=update</code> and your tables magically appear. <strong>SQLAlchemy does not do this automatically.</strong></p>
+<p>You have two choices:
+1. <strong>The Quick Prototype Way:</strong> Add <code>Base.metadata.create_all(bind=engine)</code> when your app starts.
+2. <strong>The Production Way (Alembic):</strong> Alembic is the exact equivalent of <strong>Flyway</strong> or <strong>Liquibase</strong>. </p>
+<h3 id="the-sync-vs-async-event-loop-mismatch-performance-bug">The Sync vs Async Event Loop Mismatch (Performance Bug!)<a class="headerlink" href="#the-sync-vs-async-event-loop-mismatch-performance-bug" title="Permanent link">&para;</a></h3>
+<p>As we covered in detail in <strong><a href="../chapter-0/#8-asyncawait-critical-for-fastapi">Chapter 0: Async/Await</a></strong> and <strong><a href="../chapter-3/">Chapter 3: FastAPI</a></strong>, there is a critical difference in how Python and Java handle blocking code.</p>
+<p>Notice that our FastAPI routes are <code>async def</code>, but our database <code>Session</code> is synchronous. 
+If you put a blocking database query inside an <code>async def</code> function, <strong>it blocks the entire server event loop</strong>. (Spring's blocking JDBC model doesn't have this exact problem because it uses a thread-per-request model).</p>
+<p>To fix this for high-traffic apps, you must use <strong>AsyncSQLAlchemy</strong> (<code>AsyncSession</code>) and an async driver like <code>asyncpg</code>.</p>
+<h3 id="transaction-boundaries-transactional">Transaction Boundaries (@Transactional)<a class="headerlink" href="#transaction-boundaries-transactional" title="Permanent link">&para;</a></h3>
+<p>Unlike Spring Boot, which magically handles transaction rollbacks via the <code>@Transactional</code> annotation (discussed in our earlier architectural comparisons), SQLAlchemy requires explicit boundary management.</p>
+<p>You must handle the <code>commit()</code> and <code>rollback()</code> boundaries yourself in the Service layer.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">enroll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">EnrollmentCreate</span><span class="p">):</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>        <span class="n">enrollment</span> <span class="o">=</span> <span class="n">Enrollment</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">enrollment</span><span class="p">)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># &lt;-- You must call commit!</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span> <span class="c1"># &lt;-- Catch and rollback!</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="k">raise</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter-5/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LangFuse">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LangFuse
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
