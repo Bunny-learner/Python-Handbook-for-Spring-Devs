@@ -1,3 +1,6 @@
+---
+icon: material/flash
+---
 # :material-flash: Chapter 3: FastAPI
 
 *Mastering FastAPI.*

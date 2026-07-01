@@ -1,3 +1,6 @@
+---
+icon: material/package-variant
+---
 # :material-package-variant: Chapter 2: Pydantic
 
 *Mastering Pydantic.*

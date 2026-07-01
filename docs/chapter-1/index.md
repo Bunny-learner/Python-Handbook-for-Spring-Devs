@@ -1,3 +1,6 @@
+---
+icon: material/bookshelf
+---
 # :material-bookshelf: Chapter 1: Core Python
 
 *Advanced Python concepts.*

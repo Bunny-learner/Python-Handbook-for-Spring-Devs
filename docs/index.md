@@ -1,3 +1,6 @@
+---
+icon: material/home
+---
 # Python Handbook for Spring Boot Developers
 
 Welcome! If you are a Java/Spring Boot developer looking to transition into modern Python development (specifically for AI, LLMs, and high-performance APIs), this handbook is exactly for you.

@@ -1,3 +1,6 @@
+---
+icon: material/robot-outline
+---
 # :material-robot-outline: Chapter 4: LangGraph
 
 *Mastering LangGraph.*

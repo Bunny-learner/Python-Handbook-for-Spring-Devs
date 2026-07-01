@@ -1,3 +1,6 @@
+---
+icon: material/school
+---
 # :material-school: Chapter 6: EduTrack Project
 
 *The EduTrack Capstone.*

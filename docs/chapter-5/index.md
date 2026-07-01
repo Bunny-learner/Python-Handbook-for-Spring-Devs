@@ -1,3 +1,6 @@
+---
+icon: material/chart-line
+---
 # :material-chart-line: Chapter 5: LangFuse
 
 *Observability with LangFuse.*

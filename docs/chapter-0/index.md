@@ -1,3 +1,6 @@
+---
+icon: fontawesome/brands/python
+---
 # :fontawesome-brands-python: Chapter 0: Python Basics
 
 *Python Basics for Spring Boot Developers.*

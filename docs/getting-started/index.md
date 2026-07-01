@@ -1,3 +1,6 @@
+---
+icon: material/rocket-launch
+---
 # :material-rocket-launch: Getting Started
 
 *Setting up your machine for Python AI Development.*
