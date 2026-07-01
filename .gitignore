@@ -1,0 +1,30 @@
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+
+# MkDocs generated site
+site/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDEs
+.vscode/
+.idea/
+
+# Scripts I created during this session
+reorder_c0.py
+add_toc_c6.py
+refine_c6.py
+convert_ui.py
+clean_admonitions.py
+fix_gh_alerts.py
+rewrite_c3.py
+rewrite_c6.py

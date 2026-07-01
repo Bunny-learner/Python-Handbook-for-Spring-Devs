@@ -1,0 +1,60 @@
+site_name: Python Handbook for Spring Boot Developers
+site_description: Learn Python, FastAPI, Pydantic, LangGraph and LangFuse
+site_author: Your Name
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started/index.md
+  - Python Basics: chapter-0/index.md
+  - Core Python: chapter-1/index.md
+  - Pydantic: chapter-2/index.md
+  - FastAPI: chapter-3/index.md
+  - LangGraph: chapter-4/index.md
+  - LangFuse: chapter-5/index.md
+  - EduTrack Project: chapter-6/index.md
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.details
+  - pymdownx.tabbed
+  - tables
+  - toc:
+      permalink: true
