@@ -1,4 +1,4 @@
-# ⚡ Chapter 3: FastAPI
+# :material-flash: Chapter 3: FastAPI
 
 *Mastering FastAPI.*
 Build lightning-fast, async REST APIs with auto-generated Swagger documentation.

@@ -48,20 +48,23 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - 🏠 Home: index.md
-  - 🚀 Getting Started: getting-started/index.md
-  - 🐍 Python Basics: chapter-0/index.md
-  - 📚 Core Python: chapter-1/index.md
-  - 📦 Pydantic: chapter-2/index.md
-  - ⚡ FastAPI: chapter-3/index.md
-  - 🤖 LangGraph: chapter-4/index.md
-  - 📈 LangFuse: chapter-5/index.md
-  - 🎓 EduTrack Project: chapter-6/index.md
+  - :material-home: Home: index.md
+  - :material-rocket-launch: Getting Started: getting-started/index.md
+  - :fontawesome-brands-python: Python Basics: chapter-0/index.md
+  - :material-bookshelf: Core Python: chapter-1/index.md
+  - :material-package-variant: Pydantic: chapter-2/index.md
+  - :material-flash: FastAPI: chapter-3/index.md
+  - :material-robot-outline: LangGraph: chapter-4/index.md
+  - :material-chart-line: LangFuse: chapter-5/index.md
+  - :material-school: EduTrack Project: chapter-6/index.md
 
 markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true

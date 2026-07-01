@@ -1,4 +1,4 @@
-# 🐍 Chapter 0: Python Basics
+# :fontawesome-brands-python: Chapter 0: Python Basics
 
 *Python Basics for Spring Boot Developers.*
 Learn Python syntax, OOP, async programming, and the language features you'll use when building FastAPI and AI applications.

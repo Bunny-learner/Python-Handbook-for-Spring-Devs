@@ -1,4 +1,4 @@
-# 🤖 Chapter 4: LangGraph
+# :material-robot-outline: Chapter 4: LangGraph
 
 *Mastering LangGraph.*
 Model your AI application as an explicit state machine for complex workflows and multi-agent coordination.

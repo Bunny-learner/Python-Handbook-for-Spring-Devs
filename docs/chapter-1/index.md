@@ -1,4 +1,4 @@
-# 📚 Chapter 1: Core Python
+# :material-bookshelf: Chapter 1: Core Python
 
 *Advanced Python concepts.*
 Deep dive into decorators, generators, and context managers.

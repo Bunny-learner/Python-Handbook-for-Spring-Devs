@@ -8,7 +8,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
 <div class="grid cards" markdown>
 
--   🚀 __Getting Started__
+-   :material-rocket-launch: __Getting Started__
     
     ---
     
@@ -16,7 +16,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](getting-started/index.md)
 
--   🐍 __Python Basics__
+-   :fontawesome-brands-python: __Python Basics__
     
     ---
     
@@ -24,7 +24,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-0/index.md)
 
--   📚 __Core Python__
+-   :material-bookshelf: __Core Python__
     
     ---
     
@@ -32,7 +32,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-1/index.md)
 
--   📦 __Pydantic__
+-   :material-package-variant: __Pydantic__
     
     ---
     
@@ -40,7 +40,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-2/index.md)
 
--   ⚡ __FastAPI__
+-   :material-flash: __FastAPI__
     
     ---
     
@@ -48,7 +48,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-3/index.md)
 
--   🤖 __LangGraph__
+-   :material-robot-outline: __LangGraph__
     
     ---
     
@@ -56,7 +56,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-4/index.md)
 
--   📈 __LangFuse__
+-   :material-chart-line: __LangFuse__
     
     ---
     
@@ -64,7 +64,7 @@ Rather than teaching Python from scratch like you've never programmed before, th
 
     [Start →](chapter-5/index.md)
 
--   🎓 __EduTrack Project__
+-   :material-school: __EduTrack Project__
     
     ---
     

@@ -1,4 +1,4 @@
-# 📦 Chapter 2: Pydantic
+# :material-package-variant: Chapter 2: Pydantic
 
 *Mastering Pydantic.*
 The foundation of the entire Python AI/API stack. Learn how to validate data effortlessly.

@@ -1,4 +1,4 @@
-# 📈 Chapter 5: LangFuse
+# :material-chart-line: Chapter 5: LangFuse
 
 *Observability with LangFuse.*
 Trace, monitor, and debug your LLM calls in production.
