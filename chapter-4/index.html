@@ -98,7 +98,8 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Python Handbook for Spring Boot Developers" class="md-header__button md-logo" aria-label="Python Handbook for Spring Boot Developers" data-md-component="logo">
       
-  <img src="../assets/Accenture-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -425,7 +426,8 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Python Handbook for Spring Boot Developers" class="md-nav__button md-logo" aria-label="Python Handbook for Spring Boot Developers" data-md-component="logo">
       
-  <img src="../assets/Accenture-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Python Handbook for Spring Boot Developers
@@ -821,17 +823,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#production-directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Directory Structure
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1073,17 +1064,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#production-directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Directory Structure
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1292,7 +1272,8 @@ Model your AI application as an explicit state machine for complex workflows and
 <p>Just like Spring AI uses <code>Structured Output Converters</code> to map JSON to Java records, Python uses Pydantic. LangGraph uses <code>with_structured_output</code> to force the LLM to return valid Pydantic schemas.</p>
 </div>
 <p>In production, <code>MemorySaver</code> is in-memory only. You must use a database to persist LangGraph checkpoints so conversations survive server restarts (<code>AsyncPostgresSaver</code>, <code>RedisSaver</code>).</p>
-<h3 id="production-directory-structure">Production Directory Structure<a class="headerlink" href="#production-directory-structure" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>Folder Structure Comparison</summary>
 <p>While simple tutorials put everything in a single <code>graph.py</code> file, a true production LangGraph application built alongside FastAPI should isolate responsibilities. </p>
 <p>Here is an industry-standard directory structure demonstrating how to break down a massive agentic system:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>app/
@@ -1353,6 +1334,7 @@ Model your AI application as an explicit state machine for complex workflows and
 </span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a>│
 </span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a>└── main.py
 </span></code></pre></div>
+</details>
 
 
 
