@@ -256,68 +256,68 @@ graph TD
 In production, `MemorySaver` is in-memory only. You must use a database to persist LangGraph checkpoints so conversations survive server restarts (`AsyncPostgresSaver`, `RedisSaver`).
 
 
-### Production Directory Structure
+??? info "Folder Structure Comparison"
 
-While simple tutorials put everything in a single `graph.py` file, a true production LangGraph application built alongside FastAPI should isolate responsibilities. 
+    While simple tutorials put everything in a single `graph.py` file, a true production LangGraph application built alongside FastAPI should isolate responsibilities. 
 
-Here is an industry-standard directory structure demonstrating how to break down a massive agentic system:
+    Here is an industry-standard directory structure demonstrating how to break down a massive agentic system:
 
-```text
-app/
-│
-├── api/
-│   ├── routes.py
-│   └── dependencies.py
-│
-├── graph/
-│   ├── graph.py              # StateGraph definition
-│   ├── state.py              # TypedDict / State
-│   ├── builder.py            # compile()
-│   │
-│   ├── nodes/
-│   │   ├── classifier.py
-│   │   ├── retrieval.py
-│   │   ├── generation.py
-│   │   ├── summarizer.py
-│   │   ├── planner.py
-│   │   └── tools.py
-│   │
-│   ├── routers/
-│   │   ├── intent_router.py
-│   │   ├── validation_router.py
-│   │   └── tool_router.py
-│   │
-│   ├── prompts/
-│   │   ├── classifier.py
-│   │   ├── generator.py
-│   │   └── planner.py
-│   │
-│   ├── memory/
-│   │   ├── checkpoint.py
-│   │   └── redis.py
-│   │
-│   ├── tools/
-│   │   ├── calculator.py
-│   │   ├── search.py
-│   │   ├── weather.py
-│   │   └── database.py
-│   │
-│   └── schemas/
-│       ├── state.py
-│       └── outputs.py
-│
-├── services/
-│   ├── embedding_service.py
-│   ├── vector_service.py
-│   └── llm_service.py
-│
-├── repositories/
-│   ├── vector_repository.py
-│   └── user_repository.py
-│
-├── db/
-│
-├── config/
-│
-└── main.py
-```
+    ```text
+    app/
+    │
+    ├── api/
+    │   ├── routes.py
+    │   └── dependencies.py
+    │
+    ├── graph/
+    │   ├── graph.py              # StateGraph definition
+    │   ├── state.py              # TypedDict / State
+    │   ├── builder.py            # compile()
+    │   │
+    │   ├── nodes/
+    │   │   ├── classifier.py
+    │   │   ├── retrieval.py
+    │   │   ├── generation.py
+    │   │   ├── summarizer.py
+    │   │   ├── planner.py
+    │   │   └── tools.py
+    │   │
+    │   ├── routers/
+    │   │   ├── intent_router.py
+    │   │   ├── validation_router.py
+    │   │   └── tool_router.py
+    │   │
+    │   ├── prompts/
+    │   │   ├── classifier.py
+    │   │   ├── generator.py
+    │   │   └── planner.py
+    │   │
+    │   ├── memory/
+    │   │   ├── checkpoint.py
+    │   │   └── redis.py
+    │   │
+    │   ├── tools/
+    │   │   ├── calculator.py
+    │   │   ├── search.py
+    │   │   ├── weather.py
+    │   │   └── database.py
+    │   │
+    │   └── schemas/
+    │       ├── state.py
+    │       └── outputs.py
+    │
+    ├── services/
+    │   ├── embedding_service.py
+    │   ├── vector_service.py
+    │   └── llm_service.py
+    │
+    ├── repositories/
+    │   ├── vector_repository.py
+    │   └── user_repository.py
+    │
+    ├── db/
+    │
+    ├── config/
+    │
+    └── main.py
+    ```
